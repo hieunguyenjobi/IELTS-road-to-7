@@ -1,5 +1,5 @@
 // Đổi số phiên bản khi cập nhật file để thiết bị tải bản mới.
-const V = "ielts-coach-v1";
+const V = "ielts-coach-v2";
 const FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", e => e.waitUntil(caches.open(V).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener("activate", e => e.waitUntil(

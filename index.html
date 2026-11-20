@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IELTS Coach</title>
 <meta name="description" content="Huấn luyện viên nhắc kế hoạch học IELTS Academic 7.0 mỗi ngày">
-<meta name="theme-color" content="#2f5fd0">
+<meta name="theme-color" content="#14213d">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -12,156 +12,214 @@
 <meta name="apple-mobile-web-app-title" content="IELTS Coach">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--text:#1d2433;--muted:#667085;--line:#e4e7ee;--acc:#2f5fd0;--soft:#e8eefc;--ok:#1f9d63;--warn:#b7791f;
+:root{--bg:#edf0f4;--card:#fff;--tx:#14213d;--mu:#5d687d;--ln:#d9dfe8;--ink:#14213d;--hi:#f2c94c;--ok:#1f9d63;--warn:#b86e0d;--acc:#2a9d6f;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--card:#1b202b;--text:#e8ebf2;--muted:#9aa3b5;--line:#2b3242;--acc:#7da2ff;--soft:#232c44;--ok:#4cc38a;--warn:#e0b45a;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#12151c;--card:#1b202b;--text:#e8ebf2;--muted:#9aa3b5;--line:#2b3242;--acc:#7da2ff;--soft:#232c44;--ok:#4cc38a;--warn:#e0b45a;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e131c;--card:#171e2b;--tx:#e8edf6;--mu:#9aa6ba;--ln:#273044;--ink:#1f2c4a;--warn:#e3a33f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e131c;--card:#171e2b;--tx:#e8edf6;--mu:#9aa6ba;--ln:#273044;--ink:#1f2c4a;--warn:#e3a33f;color-scheme:dark}
+body[data-s="2"]{--acc:#4a78e8}body[data-s="3"]{--acc:#e0a02e}body[data-s="4"]{--acc:#ee6a52}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-#app{max-width:640px;margin:0 auto;padding:16px 14px 40px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:12px 0}
-h1{font-size:20px;margin:4px 0 2px}h2{font-size:13px;margin:0 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.muted{color:var(--muted)}.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
-.chip{display:inline-block;background:var(--soft);color:var(--acc);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:600;margin-right:6px}
-.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--acc);border-radius:9px}
-.task{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line)}
-.task:first-of-type{border-top:0}
-.cb{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:none;color:#fff;font-size:16px;line-height:20px;cursor:pointer;padding:0}
-.task.done .cb{background:var(--ok);border-color:var(--ok)}.task.done .tx{text-decoration:line-through;color:var(--muted)}
-.tx{flex:1}.mins{font-size:12px;color:var(--muted)}
-button.btn{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:7px 12px;cursor:pointer}
-button.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
-button.play{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--acc);background:none;color:var(--acc);cursor:pointer;margin-top:4px}
-.coach{border-left:4px solid var(--acc)}.coach p{margin:4px 0}
-.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.pill{border:1px solid var(--line);border-radius:10px;padding:6px 0;text-align:center;font-size:12px;background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.pill.cur{border-color:var(--acc);background:var(--soft);font-weight:700}.pill.ok{color:var(--ok)}
-.timer{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
-input[type=date]{font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text)}
-.blk{font-size:12px;font-weight:700;color:var(--acc);margin:10px 0 0;text-transform:uppercase;letter-spacing:.04em}.sc{width:64px;font:inherit;padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text)}</style></head>
-<body><div id="app"><p class="muted">Đang tải kế hoạch…</p></div>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 ui-rounded,"SF Pro Rounded",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-variant-numeric:tabular-nums}
+#app{max-width:680px;margin:0 auto;padding:10px 14px 100px}
+h1{font-size:27px;line-height:1.15;margin:2px 0 0;font-weight:800;letter-spacing:-.02em}
+h2{font-size:16px;margin:0 0 8px;font-weight:700}
+p{margin:6px 0}.mu{color:var(--mu)}.sm{font-size:13px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:2px 0 10px}
+.logo{font-weight:800;font-size:17px;letter-spacing:-.01em}.logo b{color:var(--acc)}
+.ib{border:1px solid var(--ln);background:var(--card);width:38px;height:38px;border-radius:50%;font-size:16px;cursor:pointer;color:var(--tx)}
+.hero{background:var(--ink);color:#fff;border-radius:14px;padding:18px 18px 16px}
+.hr{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dt{font-size:13px;opacity:.75}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 8px}
+.chip{background:rgba(255,255,255,.14);border-radius:99px;padding:2px 10px;font-size:12.5px}
+.chip.a{background:var(--acc);color:#10151f;font-weight:700}
+.foc{margin:6px 0 14px;font-size:15px;opacity:.95}
+.sg{display:flex;gap:3px;height:16px}.sg i{border-radius:4px;background:rgba(255,255,255,.18)}
+.sg i.on{background:var(--acc)}.sg i.nx{background:var(--hi)}
+.sgl{display:flex;justify-content:space-between;font-size:12px;opacity:.75;margin-top:6px}
+.panel{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:14px 16px;margin:12px 0}
+.panel.l{border-left:5px solid var(--acc)}.panel.w{border-left-color:var(--warn)}
+.nt{font-size:17px;font-weight:700;margin:2px 0 10px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between}.row.s{justify-content:flex-start;flex-wrap:wrap}
+.btn{font:inherit;border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:10px;padding:8px 14px;cursor:pointer}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#10151f;font-weight:700}
+.btn:focus-visible,.ck:focus-visible,.pl:focus-visible,nav button:focus-visible,.mc:focus-visible,.dr:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.tk{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--ln)}
+.tk:first-of-type{border-top:0}
+.ck{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--mu);background:none;color:#10151f;font-size:15px;cursor:pointer;padding:0;line-height:1}
+.tk.dn .ck{background:var(--acc);border-color:var(--acc)}.tk.dn .tt{color:var(--mu);text-decoration:line-through}
+.tt{flex:1}.mn{font-size:12.5px;color:var(--mu)}
+.pl{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--acc);background:none;color:var(--acc);cursor:pointer;font-size:11px;padding:0}
+.blk{font-size:13px;font-weight:700;color:var(--acc);margin:10px 0 2px}
+.dr{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.dr.td{border-color:var(--acc);box-shadow:inset 4px 0 0 var(--acc)}
+.dd{width:38px;text-align:center;line-height:1.2}.dd span{display:block;font-size:12px;color:var(--mu)}
+.dm{flex:1;min-width:0}.ds{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ring{flex:none}.rt{stroke:var(--ln)}.rp{stroke:var(--acc);transition:stroke-dashoffset .4s}.rl{font-size:13px;font-weight:700;fill:var(--tx)}
+.hero .rt{stroke:rgba(255,255,255,.2)}.hero .rl{fill:#fff}.hero .rp{stroke:var(--hi)}
+.bar{height:8px;background:var(--ln);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.stats div{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:10px;text-align:center}.stats b{display:block;font-size:22px}
+.stg{margin:16px 0 6px;display:flex;justify-content:space-between;align-items:baseline}
+.mg{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
+.mc{aspect-ratio:1;border-radius:5px;border:1px solid var(--ln);background:var(--card);font:inherit;font-size:10px;color:var(--mu);cursor:pointer;padding:0}
+.mc.c1{background:color-mix(in srgb,var(--sa) 35%,var(--card))}.mc.c2{background:var(--sa);color:#10151f;border-color:transparent}
+.mc.bf{border-style:dashed;border-color:var(--mu)}.mc.gt{box-shadow:inset 0 -3px 0 var(--hi)}.mc.cur{outline:2px solid var(--tx);outline-offset:1px}
+.pills{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}.pill{flex:none;font:inherit;border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:99px;padding:5px 12px;cursor:pointer}
+.pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sc,#sd{width:68px;font:inherit;padding:7px;border-radius:8px;border:1px solid var(--ln);background:var(--card);color:var(--tx)}#sd{width:auto}
+.tr{display:flex;align-items:flex-end;gap:8px;height:110px;margin:8px 0}.tr div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;color:var(--mu)}
+.tr i{display:block;width:70%;background:var(--acc);border-radius:4px 4px 0 0;min-height:3px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--ln);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav .in{display:flex;max-width:680px;margin:0 auto}
+nav button{flex:1;border:0;background:none;color:var(--mu);font:inherit;font-size:11.5px;padding:3px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+nav button i{font-style:normal;font-size:20px;line-height:1.3}nav button.on{color:var(--tx);font-weight:800}
+nav button.on i{filter:none}nav button.on:after{content:"";width:18px;height:3px;border-radius:3px;background:var(--acc);margin-top:2px}
+.ov{position:fixed;inset:0;background:rgba(8,12,20,.6);z-index:10;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);width:100%;max-width:680px;border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto;animation:up .22s ease-out}
+.fx{background:var(--ink);align-items:center;color:#fff}.fxb{text-align:center;padding:20px;animation:up .22s ease-out}
+.fxw{position:relative;display:grid;place-items:center;margin:18px 0}.fxw .rt{stroke:rgba(255,255,255,.2)}.fxw .rp{stroke:var(--hi)}
+.fxt{position:absolute;font-size:46px;font-weight:800}.fxl{font-size:18px;max-width:420px;margin:0 auto}
+@keyframes up{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body><div id="app"><p class="mu">Đang tải kế hoạch…</p></div><nav id="nav"></nav><div id="ov"></div>
 <script>
 const B64="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";
 (async()=>{
-const app=document.getElementById("app");
+const $=s=>document.querySelector(s),app=$("#app"),nav=$("#nav"),ovl=$("#ov");
 if(typeof DecompressionStream==="undefined"){app.textContent="Trình duyệt quá cũ, hãy cập nhật để mở kế hoạch.";return}
-const raw=Uint8Array.from(atob(B64),c=>c.charCodeAt(0));
-const X=JSON.parse(await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream("gzip"))).text());const D=X.w,GT=X.g,RULE=X.r;
-const mem={};
-const S={get(k){try{const v=localStorage.getItem(k);return v==null?mem[k]:v}catch(e){return mem[k]}},
-set(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}},del(k){delete mem[k];try{localStorage.removeItem(k)}catch(e){}}};
-const pad=n=>String(n).padStart(2,"0");
-const iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
-const parse=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)};
-const utc=d=>Date.UTC(d.getFullYear(),d.getMonth(),d.getDate());
-const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
-const monOf=d=>add(d,-((d.getDay()+6)%7));
+const X=JSON.parse(await new Response(new Blob([Uint8Array.from(atob(B64),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("gzip"))).text());
+const D=X.w,GT=X.g,RULE=X.r,mem={};
+const S={get(k){try{const v=localStorage.getItem(k);return v==null?mem[k]:v}catch(e){return mem[k]}},set(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}}};
+const pad=n=>String(n).padStart(2,"0"),iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const parse=s=>{const[a,b,c]=s.split("-").map(Number);return new Date(a,b-1,c)},utc=d=>Date.UTC(d.getFullYear(),d.getMonth(),d.getDate());
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x},monOf=d=>add(d,-((d.getDay()+6)%7));
+const t0=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
 const DN=["Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy","Chủ nhật"],SH=["T2","T3","T4","T5","T6","T7","CN"];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let start=S.get("ielts_start"),done={};try{done=JSON.parse(S.get("ielts_done")||"{}")}catch(e){}
-let view=null,tm=null,mockErr="",askChg=false,mock={};try{mock=JSON.parse(S.get("ielts_mock")||"{}")}catch(e){}
+const SC=["#2a9d6f","#4a78e8","#e0a02e","#ee6a52"],MS=[26,52,78,95,97,99,101],MT={26:4.5,52:5.5,78:6.5,95:6.5,97:7,99:7,101:7},NM=["Listening","Reading","Writing","Speaking"],KS=["l","r","w","s"];
+let start=S.get("ielts_start"),done={},mock={},tab="today",view=null,wk=null,sel=null,fx=null,sheet=false,ip=null,err="";
+try{done=JSON.parse(S.get("ielts_done")||"{}")}catch(e){}try{mock=JSON.parse(S.get("ielts_mock")||"{}")}catch(e){}
+const saveD=()=>S.set("ielts_done",JSON.stringify(done));
+function setTheme(t){S.set("ielts_theme",t);t==="auto"?document.documentElement.removeAttribute("data-theme"):document.documentElement.setAttribute("data-theme",t)}
+setTheme(S.get("ielts_theme")||"auto");
 const pos=d=>{const n=Math.round((utc(d)-utc(parse(start)))/864e5);return{n,w:Math.floor(n/7),dow:((n%7)+7)%7}};
 function tasks(t){
  if(/^Nghỉ/.test(t))return{rest:true,text:t,items:[]};
  const parts=t.split(/\)\s*\+\s*/);
- return{rest:false,items:parts.map((p,i)=>{if(i<parts.length-1)p+=")";
-  const m=p.match(/^(.*?)\s*\((?:tối đa )?(\d+)['′’]\)(?::\s*(.*))?$/);
-  if(!m)return{t:p,m:0};
-  const k=/^Khối 2/.test(m[1]);
-  return{t:k?m[3]:m[1]+(m[3]?": "+m[3]:""),m:+m[2],k}})};
+ return{rest:false,items:parts.map((p,i)=>{if(i<parts.length-1)p+=")";const m=p.match(/^(.*?)\s*\((?:tối đa )?(\d+)['′’]\)(?::\s*(.*))?$/);if(!m)return{t:p,m:0};const k=/^Khối 2/.test(m[1]);return{t:k?m[3]:m[1]+(m[3]?": "+m[3]:""),m:+m[2],k}})};
 }
-const isRest=(w,dow)=>/^Nghỉ/.test(D[w][4][dow]);
-function streak(today){
- let s=0;for(let i=0;i<400;i++){const d=add(today,-i),k=iso(d),p=pos(d);
-  if(p.n<0||p.w>=D.length)break;
-  if((done[k]||[]).length)s++;else if(isRest(p.w,p.dow)||i===0)continue;else break}
- return s;
-}
-function coach(W,day,dn,tot,isToday,st,missed){
- const out=[],S1=W[2].slice(0,3);
- if(/^Tuần đệm/.test(W[7]))out.push("Tuần đệm: không học nội dung mới. Xử lý bài tồn, ôn lỗi lặp trong sổ lỗi và hồi phục. Học nhẹ nhưng đều vẫn tốt hơn bỏ cả tuần.");else if(/THI THỬ|THI THẬT|Full mock/i.test(W[3]))out.push("Tuần kiểm tra: làm đúng giờ thi, không tra từ điển, không dừng giữa chừng. Điểm số là dữ liệu để chỉnh kế hoạch, không phải thước đo giá trị của bạn.");
- else out.push({"GĐ1":"Giai đoạn nền tảng: học đều mỗi ngày quan trọng hơn học lâu. Hiểu chắc từng chủ điểm rồi hãy sang chủ điểm tiếp theo.","GĐ2":"Giai đoạn xây dựng: học quy tắc xong phải làm bài ngay, và ghi mọi lỗi vào sổ lỗi.","GĐ3":"Giai đoạn tăng tốc: bấm giờ thật, ghi nguyên nhân sai, viết lại bài sau khi sửa.","GĐ4":"Giai đoạn bứt phá: giải đề như thi thật. Mỗi lỗi lặp lại là một phần band bạn đang bỏ lỡ."}[S1]||"");
- if(day.rest)out.push("Hôm nay là ngày nghỉ. Ngủ đủ, để não củng cố những gì đã học."+(/^Nghỉ hoặc /.test(day.text)?" Nếu còn sức: "+day.text.replace(/^Nghỉ hoặc /,"")+".":""));
- else if(isToday){
-  const nx=day.items.findIndex((_,i)=>!dn.includes(i));
-  if(nx<0)out.push("Hoàn thành toàn bộ hôm nay. Chuỗi học hiện tại: "+st+" ngày. Nghỉ ngơi, mai gặp lại.");
-  else if(!dn.length){const h=new Date().getHours();out.push((h<11?"Buổi sáng là lúc đầu óc tốt nhất, ":h>=20?"Muộn rồi, làm phần ngắn thôi cũng đủ giữ nhịp, ":"")+"hãy bắt đầu với: "+day.items[nx].t+(day.items[nx].m?" ("+day.items[nx].m+" phút)":"")+". Chỉ cần 10 phút đầu là bạn vào guồng.")}
-  else out.push("Còn "+(day.items.length-dn.length)+" phần nữa. Phần tiếp theo: "+day.items[nx].t+".");
-  if(missed)out.push("Hôm qua bạn chưa học. Không sao, hôm nay làm đủ phần của mình là được, đừng cố bù gấp đôi.");
- }
- if(isToday&&!day.rest&&day.items.some(x=>x.k)&&dn.length<day.items.length)out.push("Hôm nay có 2 khối 60 phút: nghỉ 5–10 phút giữa hai khối, đừng học dồn một mạch.");
- return out.filter(Boolean);
-}
-function weekMins(w,v,dow){let s=0,pl=0;for(let i=0;i<7;i++){const k=iso(add(v,i-dow)),t=tasks(D[w][4][i]);pl+=t.items.reduce((a,b)=>a+b.m,0);(done[k]||[]).forEach(j=>{if(t.items[j])s+=t.items[j].m})}return[s,pl]}
-const MT={26:4.5,52:5.5,78:6.5,95:6.5,97:7,99:7,101:7};
-function gateHtml(W){const w=W[0],g=GT[w]||GT[w+1];let h="";
- if(g)h+='<div class="card" style="border-left:4px solid var(--warn)"><h2>'+(GT[w]?"Cổng đánh giá tuần này":"Sắp tới: cổng đánh giá")+'</h2><b>'+esc(g.t)+" · tuần "+g.w+" · "+esc(g.tg)+'</b><p><b>Điều kiện:</b> '+esc(g.c)+'</p><p><b>Bằng chứng:</b> '+esc(g.e)+'</p><p style="margin:0"><b>Quyết định:</b> '+esc(g.d)+'</p></div>';
- if(w>=95)h+='<div class="card" style="border-left:4px solid var(--warn)"><h2>Quy tắc vàng</h2>'+esc(RULE)+'</div>';
+const isRest=(w,i)=>/^Nghỉ/.test(D[w][4][i]);
+function dayInfo(w,i,d){const t=tasks(D[w][4][i]),dn=(done[iso(d)]||[]).filter(j=>j<t.items.length);
+ return{t,dn,n:t.items.length,pl:t.items.reduce((a,b)=>a+b.m,0),dm:t.items.reduce((a,b,j)=>a+(dn.includes(j)?b.m:0),0)}}
+function weekInfo(w){const mon=add(parse(start),7*w),days=[0,1,2,3,4,5,6].map(i=>dayInfo(w,i,add(mon,i)));
+ return{mon,days,pl:days.reduce((a,x)=>a+x.pl,0),dm:days.reduce((a,x)=>a+x.dm,0)}}
+function streak(t){let s=0;for(let i=0;i<400;i++){const d=add(t,-i),p=pos(d);if(p.n<0||p.w>=D.length)break;
+ if((done[iso(d)]||[]).length)s++;else if(isRest(p.w,p.dow)||i===0)continue;else break}return s}
+function totals(){let m=0,dd=0;for(const k in done){if(!done[k].length)continue;dd++;const p=pos(parse(k));if(p.w<0||p.w>=D.length)continue;const t=tasks(D[p.w][4][p.dow]);done[k].forEach(j=>{if(t.items[j])m+=t.items[j].m})}return{m,dd}}
+const ovr=m=>m&&KS.every(k=>typeof m[k]==="number")?Math.round(KS.reduce((a,k)=>a+m[k],0)/4*2)/2:null;
+function ring(p,sz,sw,id,lb){const r=(sz-sw)/2,c=2*Math.PI*r,h=sz/2;
+ return`<svg class="ring" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" aria-hidden="true"><circle class="rt" cx="${h}" cy="${h}" r="${r}" fill="none" stroke-width="${sw}"/><circle class="rp" id="${id||""}" cx="${h}" cy="${h}" r="${r}" fill="none" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}" transform="rotate(-90 ${h} ${h})"/>${lb?`<text class="rl" x="50%" y="50%" text-anchor="middle" dominant-baseline="central">${lb}</text>`:""}</svg>`}
+const STAGE={1:"Giai đoạn nền tảng: học đều mỗi ngày quan trọng hơn học lâu. Hiểu chắc từng chủ điểm rồi hãy sang chủ điểm tiếp theo.",2:"Giai đoạn xây dựng: học quy tắc xong phải làm bài ngay, và ghi mọi lỗi vào sổ lỗi.",3:"Giai đoạn tăng tốc: bấm giờ thật, ghi nguyên nhân sai, viết lại bài sau khi sửa.",4:"Giai đoạn bứt phá: giải đề như thi thật. Mỗi lỗi lặp lại là một phần band bạn đang bỏ lỡ."};
+function coach(W,di,isT,st,debt){
+ const o=[],t=di.t;
+ o.push(/^Tuần đệm/.test(W[7])?"Tuần đệm: không học nội dung mới. Xử lý bài tồn, ôn lỗi lặp trong sổ lỗi và hồi phục. Học nhẹ nhưng đều vẫn tốt hơn bỏ cả tuần.":/THI THỬ|THI THẬT|Full mock/i.test(W[3])?"Tuần kiểm tra: làm đúng giờ thi, không tra từ điển, không dừng giữa chừng. Điểm số là dữ liệu để chỉnh kế hoạch, không phải thước đo giá trị của bạn.":STAGE[W[2][2]]);
+ if(t.rest)o.push("Hôm nay là ngày nghỉ. Ngủ đủ để não củng cố những gì đã học."+(/^Nghỉ hoặc /.test(t.text)?" Nếu còn sức: "+t.text.replace(/^Nghỉ hoặc /,"")+".":""));
+ else if(isT){const nx=t.items.findIndex((_,j)=>!di.dn.includes(j));
+  if(nx<0)o.push("Bạn đã xong phần hôm nay. Nghỉ ngơi, mai gặp lại.");
+  else if(!di.dn.length){const h=new Date().getHours();o.push((h<11?"Buổi sáng là lúc đầu óc tốt nhất. ":h>=20?"Muộn rồi, làm phần ngắn cũng đủ giữ nhịp. ":"")+"Hãy bắt đầu với: "+t.items[nx].t+". Chỉ cần 10 phút đầu là bạn vào guồng.")}
+  else o.push("Còn "+(t.items.length-di.dn.length)+" phần nữa. Phần tiếp theo: "+t.items[nx].t+".");
+  if(t.items.some(x=>x.k)&&nx>=0)o.push("Hôm nay có 2 khối 60 phút: nghỉ 5–10 phút giữa hai khối, đừng học dồn một mạch.");
+  if(debt>=30)o.push("Bạn còn nợ khoảng "+debt+" phút từ các ngày trước trong tuần. Đừng học dồn gấp đôi: thêm 15–20 phút mỗi ngày hoặc dùng tuần đệm sắp tới.")}
+ if(isT&&st>=7)o.push("Chuỗi "+st+" ngày liên tiếp. Nhịp học này là thứ tạo ra band điểm.");
+ return o}
+function gateCard(g,now){return`<div class="panel w"><h2>${now?"Cổng đánh giá tuần này":"Sắp tới: cổng đánh giá"}</h2><b>${esc(g.t)}</b>, tuần ${g.w}, mục tiêu ${esc(g.tg)}<p><b>Điều kiện:</b> ${esc(g.c)}</p><p><b>Bằng chứng:</b> ${esc(g.e)}</p><p><b>Quyết định:</b> ${esc(g.d)}</p></div>`}
+function head(){return`<div class="top"><div class="logo">IELTS <b>Coach</b></div><div>${ip?'<button class="btn pri" data-a="inst">Cài ứng dụng</button> ':""}<button class="ib" data-a="set" aria-label="Cài đặt">⚙</button></div></div>`}
+const setup=()=>`<div class="panel" style="margin-top:9vh;text-align:center"><div style="font-size:44px">🎯</div><h1>IELTS Coach</h1><p class="mu">Chọn ngày bắt đầu Tuần 1. App sẽ tự tính hôm nay là tuần mấy, học gì, và nhắc bạn như một huấn luyện viên.</p><input type="date" id="sd" value="${iso(new Date())}"><div style="margin-top:14px"><button class="btn pri" data-a="sd">Bắt đầu</button></div></div>`;
+function todayTab(){
+ const T=t0();if(!view)view=T;const p=pos(view),isT=utc(view)===utc(T);
+ if(p.n<0)return`<div class="panel"><h1>Chưa đến ngày bắt đầu</h1><p>Tuần 1 bắt đầu ngày ${parse(start).toLocaleDateString("vi-VN")}. Còn ${-pos(T).n} ngày: hãy chuẩn bị sách, tài khoản Anki và bài kiểm tra đầu vào.</p><button class="btn" data-a="today">Về hôm nay</button></div>`;
+ if(p.w>=D.length)return`<div class="panel"><h1>Bạn đã đi hết 104 tuần</h1><p>Nếu chưa thi, hãy đặt lịch theo quy tắc vàng và giữ nhịp ôn nhẹ mỗi ngày.</p></div>`;
+ const W=D[p.w],di=dayInfo(p.w,p.dow,view),st=streak(T),wi=weekInfo(p.w),t=di.t,nx=t.items.findIndex((_,j)=>!di.dn.includes(j));
+ let debt=0,miss=[];if(isT)for(let i=0;i<p.dow;i++){const x=wi.days[i];if(!x.t.rest&&x.pl>x.dm){debt+=x.pl-x.dm;if(x.dm<x.pl/2)miss.push(i)}}
+ const hr=new Date().getHours(),gr=hr<11?"Chào buổi sáng":hr<14?"Chào buổi trưa":hr<18?"Chào buổi chiều":"Chào buổi tối",pct=di.n?di.dn.length/di.n:0;
+ let h=`<section class="hero"><div class="hr"><div><div class="dt">${DN[p.dow]}, ${view.toLocaleDateString("vi-VN")}${isT?"":" (không phải hôm nay)"}</div><h1>${isT?gr:DN[p.dow]}</h1></div>${t.rest?'<div style="font-size:40px">🌙</div>':ring(pct,72,8,"",Math.round(pct*100)+"%")}</div><div class="chips"><span class="chip a">${esc(W[2])}</span><span class="chip">Tuần ${W[0]} trên 104</span>${W[7]!=="Tuần học"?`<span class="chip">${esc(W[7])}</span>`:""}${st?`<span class="chip">🔥 ${st} ngày liên tiếp</span>`:""}</div><p class="foc">${esc(W[3])}</p>`;
+ if(!t.rest)h+=`<div class="sg" role="img" aria-label="Các khối học hôm nay">${t.items.map((it,j)=>`<i class="${di.dn.includes(j)?"on":j===nx?"nx":""}" style="flex:${it.m||10}"></i>`).join("")}</div><div class="sgl"><span>${di.dm} phút đã học</span><span>${di.pl} phút theo lịch</span></div>`;
+ h+=`</section>`;
+ if(!t.rest){h+=nx>=0?`<div class="panel l"><div class="mu sm">Việc tiếp theo</div><div class="nt">${esc(t.items[nx].t)}</div><div class="row"><span class="mu">${t.items[nx].m?t.items[nx].m+" phút":"Không ghi thời lượng"}</span>${t.items[nx].m?`<button class="btn pri" data-a="play" data-j="${nx}">▶ Bấm giờ</button>`:`<button class="btn pri" data-a="tg" data-j="${nx}">Đánh dấu xong</button>`}</div></div>`:`<div class="panel l"><b>🎉 Hoàn thành toàn bộ hôm nay.</b><div class="mu">Chuỗi học hiện tại: ${st} ngày.</div></div>`}
+ if(isT&&debt>=30&&!t.rest)h+=`<div class="panel w"><b>Còn nợ ${debt} phút từ đầu tuần</b><p class="mu sm">Chạm vào ngày để học bù phần còn thiếu.</p><div class="row s">${miss.map(i=>`<button class="pill" data-a="go" data-d="${iso(add(wi.mon,i))}">${SH[i]}</button>`).join("")||'<span class="mu sm">Các ngày nợ đều đã học một nửa trở lên.</span>'}</div></div>`;
+ h+=`<div class="panel"><h2>${t.rest?"Hôm nay":"Việc cần làm"}</h2>`;
+ if(t.rest)h+=`<p>${esc(t.text)}</p>`;
+ const hk=t.items.some(x=>x.k);
+ t.items.forEach((it,j)=>{const d=di.dn.includes(j);if(hk&&(j===0||(it.k&&!t.items[j-1].k)))h+=`<div class="blk">${it.k?"Khối 2, 60 phút":"Khối 1"}</div>`;
+  h+=`<div class="tk${d?" dn":""}"><button class="ck" data-a="tg" data-j="${j}" aria-label="Đánh dấu hoàn thành">${d?"✓":""}</button><div class="tt">${esc(it.t)}</div>${it.m?`<span class="mn">${it.m} phút</span>`:""}${it.m&&!d?`<button class="pl" data-a="play" data-j="${j}" aria-label="Bấm giờ">▶</button>`:""}</div>`});
+ h+=`</div><div class="panel l"><h2>Lời nhắc của coach</h2>${coach(W,di,isT,st,debt).filter(Boolean).map(x=>`<p>${esc(x)}</p>`).join("")}</div>`;
+ const g=GT[W[0]]||GT[W[0]+1];if(g)h+=gateCard(g,!!GT[W[0]]);
+ if(W[0]>=95)h+=`<div class="panel w"><h2>Quy tắc vàng</h2>${esc(RULE)}</div>`;
+ if(MT[W[0]])h+=`<div class="panel"><b>Tuần này có điểm thi thử.</b> <button class="btn" data-a="mk" data-w="${W[0]}">Nhập điểm</button></div>`;
+ if(W[6].length)h+=`<div class="panel"><h2>Nhắc trong tuần</h2><ul style="margin:0;padding-left:18px">${W[6].map(s=>`<li>${esc(s)}</li>`).join("")}</ul></div>`;
+ const np=pos(add(view,1));if(np.w<D.length){const nd=tasks(D[np.w][4][np.dow]);h+=`<div class="panel"><h2>Ngày mai</h2><span class="mu">${nd.rest?esc(nd.text):nd.items.map(i=>esc(i.t)).join("; ")}</span></div>`}
+ return h+`<div class="row"><button class="btn" data-a="prev">‹ Hôm trước</button><button class="btn" data-a="today">Hôm nay</button><button class="btn" data-a="next">Hôm sau ›</button></div>`}
+const curW=()=>Math.max(0,Math.min(103,pos(view||t0()).w));
+function weekTab(){const w=wk==null?curW():wk,W=D[w],wi=weekInfo(w),T=utc(t0());
+ let h=`<div class="row"><button class="btn" data-a="pw" ${w<1?"disabled":""}>‹ Tuần trước</button><b>Tuần ${W[0]}</b><button class="btn" data-a="nw" ${w>102?"disabled":""}>Tuần sau ›</button></div>`;
+ h+=`<section class="hero" style="margin-top:12px"><div class="chips" style="margin-top:0"><span class="chip a">${esc(W[2])}</span><span class="chip">Tháng ${W[1]}</span>${W[7]!=="Tuần học"?`<span class="chip">${esc(W[7])}</span>`:""}</div><p class="foc" style="margin-bottom:10px">${esc(W[3])}</p><div class="bar" style="background:rgba(255,255,255,.2)"><i style="width:${wi.pl?Math.round(wi.dm/wi.pl*100):0}%;background:var(--hi)"></i></div><div class="sgl"><span>${wi.dm} phút đã học</span><span>${wi.pl} phút theo lịch</span></div></section>`;
+ h+=`<div class="panel"><b>Đầu ra của tuần</b><p>${esc(W[5])}</p>${W[9]?`<p class="mu sm">Từ mới mục tiêu: ${W[9]} từ</p>`:""}</div>`;
+ wi.days.forEach((x,i)=>{const d=add(wi.mon,i),td=utc(d)===T,p=x.n?x.dn.length/x.n:0;
+  h+=`<button class="dr${td?" td":""}" data-a="go" data-d="${iso(d)}"><div class="dd"><b>${SH[i]}</b><span>${d.getDate()}/${d.getMonth()+1}</span></div><div class="dm"><div class="ds">${x.t.rest?esc(x.t.text):esc(x.t.items[0].t)}</div><div class="mu sm">${x.t.rest?"Ngày nghỉ":x.n+" phần, "+x.pl+" phút"}</div></div>${x.t.rest?"🌙":ring(p,34,4,"",p===1?"✓":"")}</button>`});
  return h}
-function mockHtml(W){const w=W[0],tg=MT[w];if(!tg)return"";const m=mock[w]||{},ks=["l","r","w","s"],nm=["Listening","Reading","Writing","Speaking"];
- let h='<div class="card"><h2>Điểm thi thử tuần này (mục tiêu '+tg+')</h2><div class="row" style="justify-content:flex-start;flex-wrap:wrap">'+ks.map((k,i)=>'<label class="muted" style="font-size:12px">'+nm[i]+'<br><input class="sc" id="m-'+k+'" type="number" step="0.5" min="0" max="9" value="'+(m[k]??"")+'"></label>').join("")+'</div><div style="margin-top:8px"><button class="btn pri" data-a="svm">Lưu điểm</button></div>';
- if(mockErr)h+='<p style="color:var(--warn)">'+esc(mockErr)+'</p>';
- if(ks.every(k=>typeof m[k]==="number")){const a=ks.map(k=>m[k]),o=Math.round(a.reduce((x,y)=>x+y,0)/4*2)/2,g=GT[w]||GT[97];
-  h+='<p><b>Overall: '+o+'</b> ('+(o-tg>=0?"+":"")+(o-tg)+' so với mục tiêu). Kỹ năng yếu nhất: '+nm[a.indexOf(Math.min(...a))]+'.</p><p>'+esc(o>=tg?g.ok:o>=tg-0.5?g.half:g.one)+'</p>';
-  if(w>=95&&o<6.5)h+='<p style="color:var(--warn)"><b>Mock dưới 6.5: chưa nên đăng ký thi thật.</b></p>';
-  h+='<p class="muted" style="font-size:12px;margin:0">Band tự đánh giá không thay thế đánh giá chính thức Writing/Speaking.</p>'}
- return h+'</div>'}
+function mapTab(){const T=t0(),cw=pos(T).w,tt=totals();
+ let h=`<div class="stats"><div><b>${cw>=0&&cw<104?cw+1:"–"}</b><span class="mu sm">Tuần hiện tại</span></div><div><b>${tt.dd}</b><span class="mu sm">Ngày đã học</span></div><div><b>${Math.round(tt.m/6)/10}</b><span class="mu sm">Giờ đã học</span></div></div>`;
+ [0,1,2,3].forEach(s=>{let c="",dn=0;for(let w=s*26;w<s*26+26;w++){const wi=weekInfo(w),r=wi.pl?wi.dm/wi.pl:0;if(r>=.8)dn++;const W=D[w];
+  c+=`<button class="mc ${r>=.8?"c2":r>0?"c1":""}${W[7]!=="Tuần học"?" bf":""}${GT[W[0]]?" gt":""}${w===cw?" cur":""}" data-a="gw" data-w="${w}" aria-label="Tuần ${W[0]}" title="${esc(W[3])}">${W[0]}</button>`}
+  h+=`<div class="stg"><b>${D[s*26][2]}</b><span class="mu sm">${dn} trên 26 tuần</span></div><div class="mg" style="--sa:${SC[s]}">${c}</div>`});
+ return h+`<p class="mu sm" style="margin-top:14px">Ô đặc là tuần đã học từ 80% lịch. Viền nét đứt là tuần đệm. Gạch vàng dưới ô là tuần có cổng đánh giá.</p>`}
+function scoreTab(){if(sel==null)sel=[...MS].reverse().find(x=>x<=curW()+1)||26;
+ const m=mock[sel]||{},tg=MT[sel],o=ovr(m),g=GT[sel]||GT[97],last=[...MS].reverse().find(w=>ovr(mock[w])!=null);
+ let h=`<div class="panel l"><h2>Điểm gần nhất</h2>${last?`<div style="font-size:34px;font-weight:800">${ovr(mock[last])}</div><span class="mu">Tuần ${last}, mục tiêu cuối 7.0</span>${last>=95?`<p>${ovr(mock[last])>=6.5?"Đạt ngưỡng tối thiểu 6.5 để cân nhắc thi. Cần 2–3 mock gần nhất ổn định.":"Dưới 6.5: chưa nên đăng ký thi thật."}</p>`:""}`:'<p class="mu">Chưa có điểm. Làm bài thi thử ở các tuần mốc và nhập vào đây.</p>'}</div>`;
+ h+=`<div class="pills">${MS.map(w=>`<button class="pill${w===sel?" on":""}" data-a="ms" data-w="${w}">Tuần ${w}</button>`).join("")}</div><div class="panel"><h2>Thi thử tuần ${sel} (mục tiêu ${tg})</h2><div class="row s">${KS.map((k,i)=>`<label class="mu sm">${NM[i]}<br><input class="sc" id="m-${k}" type="number" step="0.5" min="0" max="9" value="${m[k]??""}"></label>`).join("")}</div><div style="margin-top:10px"><button class="btn pri" data-a="svm">Lưu điểm</button></div>${err?`<p style="color:var(--warn)">${esc(err)}</p>`:""}`;
+ if(o!=null){const a=KS.map(k=>m[k]);h+=`<p><b>Overall ${o}</b>, ${o>=tg?"+":""}${o-tg} so với mục tiêu. Kỹ năng yếu nhất: ${NM[a.indexOf(Math.min(...a))]}.</p><p>${esc(o>=tg?g.ok:o>=tg-.5?g.half:g.one)}</p><p class="mu sm">Band tự đánh giá không thay thế đánh giá chính thức Writing và Speaking.</p>`}
+ h+=`</div><div class="panel"><h2>Xu hướng Overall</h2><div class="tr">${MS.map(w=>{const v=ovr(mock[w]);return`<div><i style="height:${v?v/9*100:3}%"></i>${v??"–"}<br>T${w}</div>`}).join("")}</div></div>`;
+ const gg=GT[sel]||(sel>=95?GT[97]:null);return h+(gg?gateCard(gg,true):"")}
+function sheetHtml(){const th=S.get("ielts_theme")||"auto";return`<div class="ov" data-a="close"><div class="sheet"><h2>Cài đặt</h2><p class="mu sm">Ngày bắt đầu Tuần 1</p><div class="row s"><input type="date" id="sd" value="${start}"><button class="btn pri" data-a="sd">Lưu</button></div><p class="mu sm" style="margin-top:16px">Giao diện</p><div class="row s">${[["auto","Tự động"],["light","Sáng"],["dark","Tối"]].map(([v,l])=>`<button class="pill${th===v?" on":""}" data-a="th" data-v="${v}">${l}</button>`).join("")}</div><p class="mu sm" style="margin-top:16px">Dữ liệu trên thiết bị này</p><div class="row s"><button class="btn" data-a="bk">Sao lưu dữ liệu</button><button class="btn" data-a="rs">Khôi phục</button></div><input type="file" id="rsf" accept="application/json" hidden><div style="margin-top:18px"><button class="btn" data-a="close">Đóng</button></div></div></div>`}
+const fxHtml=()=>`<div class="ov fx"><div class="fxb"><div class="fxl">${esc(fx.l)}</div><div class="fxw">${ring(1,250,14,"fxr")}<div class="fxt" id="fxt">--:--</div></div><div class="row s" style="justify-content:center"><button class="btn" data-a="fxp">${fx.rem!=null?"Tiếp tục":"Tạm dừng"}</button><button class="btn" data-a="fx5">Thêm 5 phút</button></div><div class="row s" style="justify-content:center;margin-top:10px"><button class="btn pri" data-a="fxd">✓ Xong</button><button class="btn" data-a="fxx">Đóng</button></div></div></div>`;
 function render(){
- if(!start){app.innerHTML='<div class="card"><h1>IELTS Coach</h1><p class="muted">Chọn ngày bắt đầu Tuần 1 của lộ trình. App sẽ tính tuần hiện tại theo thứ Hai của tuần chứa ngày đó.</p><input type="date" id="sd" value="'+iso(new Date())+'"> <button class="btn pri" data-a="setstart">Bắt đầu</button></div>';return}
- const today=new Date();today.setHours(0,0,0,0);if(!view)view=today;
- const p=pos(view),isToday=utc(view)===utc(today),head='<div class="row"><span class="muted">IELTS Coach</span><span>'+(ip?'<button class="btn pri" data-a="inst">Cài ứng dụng</button> ':'')+'<button class="btn" data-a="chg">Đổi ngày bắt đầu</button></span></div>';
- if(p.n<0){app.innerHTML=head+'<div class="card"><h1>Chưa đến ngày bắt đầu</h1><p>Tuần 1 bắt đầu ngày '+parse(start).toLocaleDateString("vi-VN")+'. Còn '+(-pos(today).n)+' ngày. Dùng thời gian này để chuẩn bị sách và tài khoản Anki.</p><button class="btn" data-a="today">Về hôm nay</button></div>';return}
- if(p.w>=D.length){app.innerHTML=head+'<div class="card"><h1>Bạn đã đi hết lộ trình 104 tuần</h1><p>Hãy đặt lịch thi thật nếu chưa thi, và giữ nhịp ôn nhẹ mỗi ngày.</p></div>';return}
- const W=D[p.w],day=tasks(W[4][p.dow]),k=iso(view),dn=done[k]||[],tot=day.items.reduce((a,b)=>a+b.m,0),st=streak(today);
- const y=add(view,-1),py=pos(y),missed=isToday&&py.n>=0&&!isRest(py.w,py.dow)&&!(done[iso(y)]||[]).length;
- const h=new Date().getHours(),greet=h<11?"Chào buổi sáng":h<14?"Chào buổi trưa":h<18?"Chào buổi chiều":"Chào buổi tối";
- const [wm,wp]=weekMins(p.w,view,p.dow);const pct=day.items.length?Math.round(dn.length/day.items.length*100):0;
- let html=head+'<h1>'+(isToday?greet+"!":DN[p.dow])+'</h1><div class="muted">'+DN[p.dow]+", "+view.toLocaleDateString("vi-VN")+(isToday?"":" (không phải hôm nay)")+'</div>';
- html+='<div style="margin:10px 0"><span class="chip">'+esc(W[2])+'</span><span class="chip">Tuần '+W[0]+'/104 · Tháng '+W[1]+'</span>'+(W[7]!=="Tuần học"?'<span class="chip">'+esc(W[7])+'</span>':'')+(st?'<span class="chip">🔥 '+st+' ngày liên tiếp</span>':'')+'</div>';
- html+='<div class="bar"><i style="width:'+(W[0]/104*100)+'%"></i></div>';
- html+='<div class="card"><h2>Trọng tâm tuần</h2>'+esc(W[3])+(W[9]?'<div class="muted" style="margin-top:6px">Từ mới mục tiêu tuần này: '+W[9]+' từ</div>':'')+'</div>';
- html+='<div class="card"><div class="row"><h2 style="margin:0">'+(day.rest?"Hôm nay":"Việc cần làm")+'</h2>'+(tot?'<span class="mins">'+tot+' phút</span>':'')+'</div>';
- if(day.rest)html+='<p>'+esc(day.text)+'</p>';
- else{html+='<div class="bar"><i style="width:'+pct+'%"></i></div>';
-  const hk=day.items.some(x=>x.k);day.items.forEach((it,i)=>{const d=dn.includes(i);if(hk&&(i===0||(it.k&&!day.items[i-1].k)))html+='<div class="blk">'+(it.k?"Khối 2 · 60 phút":"Khối 1")+'</div>';html+='<div class="task'+(d?" done":"")+'"><button class="cb" data-a="tg" data-i="'+i+'" aria-label="Đánh dấu hoàn thành">'+(d?"✓":"")+'</button><div class="tx">'+esc(it.t)+(it.m?'<div class="mins">'+it.m+' phút</div>'+(d?"":'<button class="play" data-a="tm" data-i="'+i+'" data-m="'+it.m+'">▶ Bấm giờ</button>'):"")+'</div></div>'});}
- html+='</div>';
- if(tm)html+='<div class="card" id="tmc"><h2>Đang bấm giờ: '+esc(tm.l)+'</h2><div class="timer" id="tmv">--:--</div><button class="btn" data-a="tmx">Dừng</button></div>';
- const cs=coach(W,day,dn,tot,isToday,st,missed);
- html+='<div class="card coach"><h2>Lời nhắc của coach</h2>'+cs.map(t=>"<p>"+esc(t)+"</p>").join("")+'</div>';
- html+=gateHtml(W)+mockHtml(W);
- html+='<div class="card"><h2>Tuần này</h2><div class="strip">'+SH.map((s,i)=>{const dd=add(view,i-p.dow),ds=iso(dd),dd2=(done[ds]||[]);return'<button class="pill'+(i===p.dow?" cur":"")+(dd2.length?" ok":"")+'" data-a="go" data-d="'+ds+'">'+s+"<br>"+dd.getDate()+(dd2.length?" ✓":"")+"</button>"}).join("")+'</div><p class="muted" style="margin:10px 0 0"><b>Mục tiêu tuần:</b> '+esc(W[5])+'</p><p class="muted" style="margin:6px 0 0"><b>Đã học tuần này:</b> '+wm+' / '+wp+' phút theo lịch ('+(wp?Math.round(wm/wp*100):0)+'%)</p></div>';
- if(W[6].length)html+='<div class="card"><h2>Nhắc trong tuần</h2><ul style="margin:0;padding-left:18px">'+W[6].map(s=>"<li>"+esc(s)+"</li>").join("")+'</ul></div>';
- const nx=add(view,1),pn=pos(nx);
- if(pn.w<D.length){const nd=tasks(D[pn.w][4][pn.dow]);html+='<div class="card"><h2>Ngày mai</h2><span class="muted">'+(nd.rest?esc(nd.text):nd.items.map(i=>esc(i.t)).join(" · "))+'</span></div>'}
- html+='<div class="row"><button class="btn" data-a="prev">← Hôm trước</button><button class="btn" data-a="today">Hôm nay</button><button class="btn" data-a="next">Hôm sau →</button></div><div class="row" style="margin-top:12px"><button class="btn" data-a="bk">Sao lưu dữ liệu</button><button class="btn" data-a="rs">Khôi phục</button></div><input type="file" id="rsf" accept="application/json" hidden>';
- app.innerHTML=html;
-}
-app.addEventListener("click",e=>{
- const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a;
- if(a==="setstart"){const v=document.getElementById("sd").value;if(v){start=iso(monOf(parse(v)));S.set("ielts_start",start);view=null}}
- else if(a==="chg"){if(!askChg){askChg=true;b.textContent="Bấm lần nữa để xác nhận";return}askChg=false;start=null;S.del("ielts_start")}
- else if(a==="svm"){const w=D[pos(view).w][0],v=["l","r","w","s"].map(k=>parseFloat(document.getElementById("m-"+k).value));
-  if(v.some(x=>isNaN(x)||x<0||x>9))mockErr="Nhập đủ 4 điểm từ 0 đến 9.";else{mockErr="";mock[w]={l:v[0],r:v[1],w:v[2],s:v[3]};S.set("ielts_mock",JSON.stringify(mock))}}
- else if(a==="tg"){const k=iso(view),i=+b.dataset.i,s=new Set(done[k]||[]);s.has(i)?s.delete(i):s.add(i);done[k]=[...s];S.set("ielts_done",JSON.stringify(done))}
- else if(a==="tm"){tm={l:tasks(D[pos(view).w][4][pos(view).dow]).items[+b.dataset.i].t,end:Date.now()+b.dataset.m*6e4}}
- else if(a==="tmx")tm=null;
+ if(!start){app.innerHTML=setup();nav.innerHTML="";ovl.innerHTML="";return}
+ const q=pos(view||t0());document.body.dataset.s=q.w>=0&&q.w<104?D[q.w][2][2]:"1";
+ const y=scrollY;app.innerHTML=head()+({today:todayTab,week:weekTab,map:mapTab,score:scoreTab}[tab])();
+ nav.innerHTML='<div class="in">'+[["today","🏠","Hôm nay"],["week","📅","Tuần"],["map","🗺️","Lộ trình"],["score","📈","Điểm"]].map(([k,i,l])=>`<button class="${tab===k?"on":""}" data-a="tab" data-t="${k}"><i>${i}</i>${l}</button>`).join("")+"</div>";
+ ovl.innerHTML=sheet?sheetHtml():fx?fxHtml():"";scrollTo(0,y)}
+const toggle=(k,j,on)=>{const s=new Set(done[k]||[]);on?s.add(j):s.has(j)?s.delete(j):s.add(j);done[k]=[...s];saveD()};
+function beep(){try{const a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=880;g.gain.setValueAtTime(.2,a.currentTime);o.start();o.stop(a.currentTime+.4)}catch(e){}}
+function fxDraw(){if(!fx)return;const r=fx.rem!=null?fx.rem:Math.max(0,fx.end-Date.now()),t=$("#fxt"),c=$("#fxr");if(!t)return;
+ t.textContent=r?pad(Math.floor(r/6e4))+":"+pad(Math.floor(r%6e4/1e3)):"Hết giờ";
+ if(c)c.style.strokeDashoffset=String(+c.getAttribute("stroke-dasharray")*(1-r/fx.tot));
+ if(!r&&!fx.fin){fx.fin=true;try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}beep()}}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,s=b.dataset;
+ if(a==="close"&&e.target!==b)return;
+ if(a==="tab"){tab=s.t;wk=null;scrollTo(0,0)}
+ else if(a==="tg")toggle(iso(view),+s.j);
+ else if(a==="play"){const p=pos(view),it=tasks(D[p.w][4][p.dow]).items[+s.j];fx={k:iso(view),j:+s.j,l:it.t,tot:it.m*6e4,end:Date.now()+it.m*6e4,rem:null,fin:false}}
+ else if(a==="fxp"){if(fx.rem!=null){fx.end=Date.now()+fx.rem;fx.rem=null}else fx.rem=Math.max(0,fx.end-Date.now())}
+ else if(a==="fx5"){fx.tot+=3e5;fx.rem!=null?fx.rem+=3e5:fx.end+=3e5;fx.fin=false}
+ else if(a==="fxd"){toggle(fx.k,fx.j,true);fx=null}else if(a==="fxx")fx=null;
+ else if(a==="go"){view=parse(s.d);tab="today";scrollTo(0,0)}
+ else if(a==="gw"){wk=+s.w;tab="week";scrollTo(0,0)}
+ else if(a==="pw")wk=Math.max(0,(wk==null?curW():wk)-1);else if(a==="nw")wk=Math.min(103,(wk==null?curW():wk)+1);
+ else if(a==="prev"){if(pos(view).n>0)view=add(view,-1)}else if(a==="next"){if(pos(view).n<727)view=add(view,1)}else if(a==="today")view=null;
+ else if(a==="mk"){sel=+s.w;tab="score";scrollTo(0,0)}else if(a==="ms"){sel=+s.w;err=""}
+ else if(a==="svm"){const v=KS.map(k=>parseFloat($("#m-"+k).value));if(v.some(x=>isNaN(x)||x<0||x>9))err="Nhập đủ 4 điểm từ 0 đến 9.";else{err="";mock[sel]={l:v[0],r:v[1],w:v[2],s:v[3]};S.set("ielts_mock",JSON.stringify(mock))}}
+ else if(a==="set")sheet=true;else if(a==="close")sheet=false;
+ else if(a==="sd"){const v=$("#sd").value;if(v){start=iso(monOf(parse(v)));S.set("ielts_start",start);view=null;wk=null;sheet=false}}
+ else if(a==="th")setTheme(s.v);
  else if(a==="inst"){if(ip){ip.prompt();ip=null}}
- else if(a==="bk"){const u=URL.createObjectURL(new Blob([JSON.stringify({start:S.get("ielts_start"),done,mock})],{type:"application/json"})),l=document.createElement("a");l.href=u;l.download="ielts-coach-backup.json";l.click();setTimeout(()=>URL.revokeObjectURL(u),1500);return}
- else if(a==="rs"){document.getElementById("rsf").click();return}
- else if(a==="go")view=parse(b.dataset.d);
- else if(a==="prev"){if(pos(view).n>0)view=add(view,-1)}
- else if(a==="next"){if(pos(view).w<D.length-1||pos(view).dow<6)view=add(view,1)}
- else if(a==="today")view=null;
- render();tick();
-});
-function tick(){const v=document.getElementById("tmv");if(!tm||!v)return;const r=Math.max(0,tm.end-Date.now());
- v.textContent=r?pad(Math.floor(r/6e4))+":"+pad(Math.floor(r%6e4/1e3)):"Hết giờ! Hãy đánh dấu hoàn thành.";
- if(!r){try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}}}
-let ip=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();ip=e;render()});window.addEventListener("appinstalled",()=>{ip=null;render()});
-app.addEventListener("change",e=>{if(e.target.id!=="rsf")return;const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const o=JSON.parse(t);if(o.start){start=o.start;S.set("ielts_start",start)}done=o.done||{};S.set("ielts_done",JSON.stringify(done));mock=o.mock||{};S.set("ielts_mock",JSON.stringify(mock));view=null;render()}catch(x){}})});
-setInterval(tick,1000);
-render();
+ else if(a==="bk"){const u=URL.createObjectURL(new Blob([JSON.stringify({start,done,mock})],{type:"application/json"})),l=document.createElement("a");l.href=u;l.download="ielts-coach-backup.json";l.click();setTimeout(()=>URL.revokeObjectURL(u),1500);return}
+ else if(a==="rs"){$("#rsf").click();return}
+ render();fxDraw()});
+document.addEventListener("change",e=>{if(e.target.id!=="rsf")return;const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const o=JSON.parse(t);if(o.start){start=o.start;S.set("ielts_start",start)}done=o.done||{};saveD();mock=o.mock||{};S.set("ielts_mock",JSON.stringify(mock));view=null;sheet=false;render()}catch(x){}})});
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();ip=e;render()});addEventListener("appinstalled",()=>{ip=null;render()});
+setInterval(fxDraw,500);render();
 })();
 </script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
