@@ -1,6 +1,6 @@
 # IELTS Coach 7.0 (PWA)
 
-Ứng dụng tĩnh (không cần máy chủ, không cần build). Gồm: index.html, sw.js, manifest.webmanifest, thư mục icons.
+Ứng dụng tĩnh (không cần máy chủ, không cần build). Gồm: index.html, sw.js, manifest.webmanifest, các file icon.
 
 ## Đưa lên Netlify
 Cách nhanh: vào https://app.netlify.com/drop, giải nén file zip rồi kéo thả cả thư mục vào trang.
